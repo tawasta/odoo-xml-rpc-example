@@ -110,7 +110,10 @@ $customers = $models->execute_kw($db, $uid, $password, 'res.partner',
     array($customer_ids), // An array of record ids
     array('fields'=>array('name', 'businessid')) // Array of wanted fields
 );
-    
+```
+
+Output example
+```php   
 print("<p><strong>Found customers:</strong><br/>");
 foreach ($customers as &$customer){
     print("${customer[name]} ${customer[businessid]}<br/>");
@@ -144,7 +147,7 @@ $customer = $models->execute_kw($db, $uid, $password, 'res.partner',
 When creating a record, some fields are required (usually at least 'name'-field).
 Some required fields are filled in automatically, if they are left empty.
 
-NOTE: Odoo doesn't prevent creating companies with same name
+NOTE: Odoo doesn't prevent creating companies with same name.
 Business id, however, is required to be unique (unless the company is a child of
 a company with the same business id).
 
