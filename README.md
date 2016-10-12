@@ -35,9 +35,10 @@ Available domain operators (based on http://stackoverflow.com/a/29443027)
 Database scheme (v8): http://useopenerp.com/v8
 
 Common models:
-* Partner: http://useopenerp.com/v8/model/res-partner
-* Invoice: http://useopenerp.com/v8/model/account-invoice
-* Invoice line: http://useopenerp.com/v8/model/account-invoice-line
+* Partner - http://useopenerp.com/v8/model/res-partner
+* Invoice - http://useopenerp.com/v8/model/account-invoice
+* Invoice line - http://useopenerp.com/v8/model/account-invoice-line
+* Product - http://useopenerp.com/v8/model/product_product
 
 ### Field examples
 Fields documentation: https://www.odoo.com/documentation/8.0/reference/orm.html
