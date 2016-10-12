@@ -39,7 +39,7 @@ The search query is constructed as follows
 ```php
 $models					// The (Ripcord) client
 	->execute_kw(		// Execute command
-	'table.reference'	// Referenced model, e.g. 'res.partner'
+	'table.reference'	// Referenced model, e.g. 'res.partner' or 'account.invoice'
 	'search',			// Search method of the referenced model
 	array(),		    // Search domain
 )
@@ -105,7 +105,7 @@ Read works similiar to search, but instead of domain operators,
 we will support the read with record ids
 
 ```php
-$customers = $models->execute_kw($db, $uid, $password, 'res.partner' or 'account.invoice',
+$customers = $models->execute_kw($db, $uid, $password, 'res.partner',
     'read',  // Function name
     array($customer_ids), // An array of record ids
     array('fields'=>array('name', 'businessid')) // Array of wanted fields
