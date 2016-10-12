@@ -70,10 +70,8 @@ $customer_ids = $models->execute_kw(
             array('customer', '=', true)) // Query condition
         )
  );
-
-// $customer_ids will now contain a list of partner ids
 ```
-
+$customer_ids will now contain a list of partner ids
 
 ## Read (customer) information
 
@@ -149,7 +147,10 @@ $new_partner_id = $models->execute_kw($db, $uid, $password,
         )
     )
 );
+```
 
+Output example
+```php
 if(is_int($new_partner_id)){
     print("Partner '${partner_name}' created with id '${new_partner_id}'");
 }
