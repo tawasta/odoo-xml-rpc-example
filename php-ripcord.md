@@ -44,19 +44,18 @@ $models					// The (Ripcord) client
 
 ## Search (customers)
 
-All "partners" in Odoo are located in the table res_partner.
+All "partners" in Odoo are located in the table **res_partner**.
 
-This includes customers, contacts and suppliers. Partner types
-are differentiated with boolean fields:
+This includes **customers**, **contacts** and **suppliers**.  
+Partner typesare differentiated with boolean fields:
 
-```php
-is_company 			// (True = is a company, False = is a contact or an employee)
-customer 			// (True = is a customer, will be shown in "customers")
-supplier 			// (True = is a supplier, will be shown in "suppliers").
-```
+* **is_company** - True = is a company, False = is a **contact** or an **employee**
+* **customer** - True = is a customer, will be shown in "**customers**"
+* **supplier** - True = is a supplier, will be shown in "**suppliers**"
 
-A partner can be both customer and supplier (or neither)
+**A partner can be both customer and supplier (or neither)**
 
+Searching all customers that are companies:
 ```php
 $customer_ids = $models->execute_kw(
     $db, // DB name
@@ -71,7 +70,8 @@ $customer_ids = $models->execute_kw(
         )
  );
 ```
-$customer_ids will now contain a list of partner ids
+
+```$customer_ids``` will now contain a list of partner ids.
 
 ## Read (customer) information
 
