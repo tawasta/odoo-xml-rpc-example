@@ -64,7 +64,7 @@ $customer_ids = $models->execute_kw(
     'res.partner', // Model name
     'search', // Function name
     array( // Search domain
-        array( // Domain operators
+        array( // Search domain conditions
             array('is_company', '=', true), // Query condition
             array('customer', '=', true)) // Query condition
         )
