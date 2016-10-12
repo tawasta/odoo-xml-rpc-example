@@ -53,7 +53,7 @@ Partner typesare differentiated with boolean fields:
 * **customer** - True = is a customer, will be shown in "**customers**"
 * **supplier** - True = is a supplier, will be shown in "**suppliers**"
 
-**A partner can be both customer and supplier (or neither)**
+**A partner can be both customer and supplier** (or neither)
 
 Searching all customers that are companies:
 ```php
