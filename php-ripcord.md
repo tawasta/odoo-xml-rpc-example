@@ -1,11 +1,8 @@
- 
 # Odoo PHP XML-RPC Example
 
 This example is using Ripcord XML-RPC library
 
 * Ripcord git: https://github.com/poef/ripcord
-* Odoo XML-RPC documentation: https://www.odoo.com/documentation/8.0/api_integration.html
-
 
 ## Login Information
 ```php
@@ -44,27 +41,6 @@ $models					// The (Ripcord) client
 	array(),		    // Search domain
 )
 ```
-
-Search domain is an array containing an array of domain rules, 
-that contains array(s) of query conditions
-
-Available domain operators:
-http://stackoverflow.com/a/29443027
-
-```php
-('=', '!=', '<=', '<', '>', '>=', '=?',
-'=like', '=ilike', 'like', 'not like', 
-'ilike', 'not ilike', 'in', 'not in', 'child_of')
-```
-
-Odoo database scheme can be found from here
-http://useopenerp.com/v8
-
-### Model Examples
-* Partner: http://useopenerp.com/v8/model/res-partner
-* Invoice: http://useopenerp.com/v8/model/account-invoice
-* Invoice line: http://useopenerp.com/v8/model/account-invoice-line
-
 
 ## Search (customers)
 
