@@ -105,7 +105,7 @@ Read works similiar to search, but instead of domain operators,
 we will support the read with record ids
 
 ```php
-$customers = $models->execute_kw($db, $uid, $password, 'res.partner',
+$customers = $models->execute_kw($db, $uid, $password, 'res.partner' or 'account.invoice',
     'read',  // Function name
     array($customer_ids), // An array of record ids
     array('fields'=>array('name', 'businessid')) // Array of wanted fields
