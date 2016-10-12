@@ -4,7 +4,7 @@
 This example is using Ripcord XML-RPC library
 
 * Ripcord git: https://github.com/poef/ripcord
-* Odoo XML-rpc documentation: https://www.odoo.com/documentation/8.0/api_integration.html
+* Odoo XML-RPC documentation: https://www.odoo.com/documentation/8.0/api_integration.html
 
 
 ## Login Information
@@ -66,7 +66,7 @@ http://useopenerp.com/v8
 * Invoice line: http://useopenerp.com/v8/model/account-invoice-line
 
 
-## SEARCH (CUSTOMERS)
+## Search (customers)
 
 All "partners" in Odoo are located in the table res_partner.
 
