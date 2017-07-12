@@ -4,6 +4,8 @@ This example is using Ripcord XML-RPC library
 
 * Ripcord git: https://github.com/poef/ripcord
 
+Ripcord requires the php-xmlrpc library (php-xmlrpc on Debian)
+
 ## Login Information
 ```php
 // Login information
