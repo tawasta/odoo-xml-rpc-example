@@ -165,6 +165,9 @@ else{
 
 
 ## Updating a (customer) record
+Updating (writing) works similiar to create, but requires the id(s) being updated
+You can write multiple records and multiple fields at once.
+
 ```php 
 $new_name = 'Updated Partner';
 
