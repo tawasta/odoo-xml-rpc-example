@@ -36,11 +36,11 @@ $models = ripcord::client($url_exec);
 
 The search query is constructed as follows
 ```php
-$models					// The (Ripcord) client
-	->execute_kw(		// Execute command
-	'table.reference'	// Referenced model, e.g. 'res.partner' or 'account.invoice'
-	'search',			// Search method of the referenced model
-	array(),		    // Search domain
+$models                 // The (Ripcord) client
+    ->execute_kw(       // Execute command
+    'table.reference'   // Referenced model, e.g. 'res.partner' or 'account.invoice'
+    'search',           // Search method of the referenced model
+    array(),            // Search domain
 )
 ```
 
@@ -161,6 +161,24 @@ else{
     print($new_partner_id['faultString']);
     print("</p>");
 }
+```
+
+
+## Updating a (customer) record
+```php 
+$new_name = 'Updated Partner';
+
+$updated_values = $models->execute_kw($db, $uid, $password,
+    'res.partner',
+    'write',
+    array(
+        array($new_partner_id), // You can have multiple ids here
+        array(
+            'name'=>$new_name,
+            'website'=>'https://odoo-community.org/'
+        )
+    )
+);
 ```
 
  
