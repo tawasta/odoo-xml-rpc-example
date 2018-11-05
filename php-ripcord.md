@@ -5,15 +5,16 @@ This example is using Ripcord XML-RPC library
 * Ripcord git: https://github.com/poef/ripcord
 
 Ripcord requires the php-xmlrpc library (php-xmlrpc on Debian)
+More information about Odoo XML-RPC API: https://www.odoo.com/documentation/10.0/api_integration.html
 
 ## Login Information
 ```php
 // Login information
-$url = 'https://demo.futural.fi';
+$url = 'https://erp.futural.fi';
 $url_auth = $url . '/xmlrpc/2/common';
 $url_exec = $url . '/xmlrpc/2/object';
 
-$db = 'demo';
+$db = 'demo10test';
 $username = 'demo';
 $password = 'demo';
 
@@ -38,9 +39,9 @@ The search query is constructed as follows
 ```php
 $models                 // The (Ripcord) client
     ->execute_kw(       // Execute command
-    'table.reference'   // Referenced model, e.g. 'res.partner' or 'account.invoice'
+    'table.reference',  // Referenced model, e.g. 'res.partner' or 'account.invoice'
     'search',           // Search method of the referenced model
-    array(),            // Search domain
+    array()             // Search domain
 )
 ```
 
@@ -84,15 +85,15 @@ we will support the read with record ids
 $customers = $models->execute_kw($db, $uid, $password, 'res.partner',
     'read',  // Function name
     array($customer_ids), // An array of record ids
-    array('fields'=>array('name', 'businessid')) // Array of wanted fields
+    array('fields'=>array('name', 'business_id')) // Array of wanted fields
 );
 ```
 
-Output example
+// Output example
 ```php   
 print("<p><strong>Found customers:</strong><br/>");
 foreach ($customers as &$customer){
-    print("${customer[name]} ${customer[businessid]}<br/>");
+    print("{$customer[name]} {$customer['business_id']}<br/>");
 }
 print("</p>");
 ```
@@ -110,7 +111,7 @@ $customer = $models->execute_kw($db, $uid, $password, 'res.partner',
     'search_read', // Note the different function here, so we don't have to search AND read
     array( // Search domain
         array(
-            array('businessid', '=', '1935052-9')
+            array('business_id', '=', '1935052-9')
         )
     ),
     array('fields'=>array('name')) // Array of wanted fields
@@ -151,7 +152,7 @@ $new_partner_id = $models->execute_kw($db, $uid, $password,
 );
 ```
 
-Output example
+// Output example
 ```php
 if(is_int($new_partner_id)){
     print("Partner '${partner_name}' created with id '${new_partner_id}'");
@@ -184,7 +185,66 @@ $updated_values = $models->execute_kw($db, $uid, $password,
 );
 ```
 
- 
+## Creating a sale order
+
+### Create the sale order (header)
+```php 
+$sale_order_model = 'sale.order';
+$sale_order_line_model = 'sale.order.line';
+
+// Create sale order
+$sale_order_id = $models->execute_kw($db, $uid, $password,
+    $sale_order_model,
+    'create',
+    array(
+        array(
+            'partner_id'=>$customer_ids[0],
+        )
+    )
+);
+``` 
+
+// Output example
+```php 
+if(is_int($sale_order_id)){
+    print("<p>Sale order created with id '{$sale_order_id}'</p>");
+}
+else{
+    print("<p>Error: ");
+    print($sale_order_id['faultString']);
+    print("</p>");
+}
+```
+
+### Create sale order lines
+```php 
+// Create sale order line(s)
+$sale_order_line_id = $models->execute_kw($db, $uid, $password,
+    $sale_order_line_model,
+    'create',
+    array(
+        array(
+            'order_id'=>$sale_order_id, // Reference to the sale order itself
+            'name'=>"Product description", // Sale order line description
+            'product_id'=>1, // Products can be found from product_product
+            'price_unit'=>123.45, // Unit price
+        )
+    )
+);
+```
+
+// Output example
+```php
+if(is_int($sale_order_line_id)){
+    print("<p>Sale order line line created with id '{$sale_order_line_id}'</p>");
+}
+else{
+    print("<p>Error: ");
+    print($sale_order_line_id['faultString']);
+    print("</p>");
+}
+```
+
 ## Creating an invoice
 
 ### Create the invoice (header)
@@ -199,16 +259,15 @@ $invoice_id = $models->execute_kw($db, $uid, $password,
     array(
         array(
             'partner_id'=>$customer_ids[0],
-            'account_id'=>219, // Account "1701 Myyntisaamiset
         )
     )
 );
 ``` 
 
-Output example
+// Output example
 ```php 
 if(is_int($invoice_id)){
-    print("<p>Invoice created with id '${invoice_id}'</p>");
+    print("<p>Invoice created with id '{$invoice_id}'</p>");
 }
 else{
     print("<p>Error: ");
@@ -228,15 +287,17 @@ $invoice_line_id = $models->execute_kw($db, $uid, $password,
             'invoice_id'=>$invoice_id, // Reference to the invoice itself
             'name'=>"Product description", // Invoice line description
             'product_id'=>1, // Products can be found from product_product
+            'price_unit'=>123.45, // Unit price
+            'account_id'=>1, // Accounting accounts can be found from account_account            
         )
     )
 );
 ```
 
-Output example
+// Output example
 ```php
 if(is_int($invoice_line_id)){
-    print("<p>Invoice line created with id '${invoice_line_id}'</p>");
+    print("<p>Invoice line created with id '{$invoice_line_id}'</p>");
 }
 else{
     print("<p>Error: ");
