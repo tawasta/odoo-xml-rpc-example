@@ -136,8 +136,7 @@ $new_partner_id = $models->execute_kw($db, $uid, $password,
     array( // Values-array
         array( // First record
             'name'=>$partner_name,
-            'businessid'=>"1234567-1",
-            'businessid_shown'=>True, // Show business id in the customer card
+            'business_id'=>"1234567-1",
             'customer'=>True,
             'is_company'=>True,
             'street'=>"Street 123",
